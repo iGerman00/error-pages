@@ -183,17 +183,19 @@
     <div class="container">
         <h1>Page not found!</h1>
         <div class="message">
-            <span class="status-code">Error 404</span>
-            <br>
-            {{ if placeholder "http.vars.template_message" }}
-                <span class="status-message">
-                    {{ placeholder "http.vars.template_message" }}
-                </span>
+            {{ if placeholder "http.error.status_code" }}
+                <span class="status-code">Error {{ placeholder "http.error.status_code" }}</span>
             {{ else }}
-                <span class="status-message">
-                    Looks like this page is as lost as an owl on mars
-                </span>
+                <span class="status-code">Error 404</span>
             {{ end }}
+            <br>
+            <span class="status-message">
+            {{ if placeholder "http.vars.template_message" }}
+                {{ placeholder "http.vars.template_message" }}
+            {{ else }}
+                Looks like this page is as lost as an owl on mars
+            {{ end }}
+            </span>
         </div>
         <div class="map">
             <div class="map-dot"></div>

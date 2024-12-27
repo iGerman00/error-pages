@@ -163,7 +163,11 @@
     <div class="container">
         <h1>Forbidden!</h1>
         <div class="message">
-            <span class="status-code">Error 403</span>
+            {{ if placeholder "http.error.status_code" }}
+                <span class="status-code">Error {{ placeholder "http.error.status_code" }}</span>
+            {{ else }}
+                <span class="status-code">Error 403</span>
+            {{ end }}
             <br>
             <span class="status-message">
             {{ if placeholder "http.vars.template_message" }}

@@ -182,21 +182,22 @@
                 <span class="status-code">Error 500</span>
             {{ end }}
             <br>
+            <span class="status-message">
             {{ if placeholder "http.vars.template_message" }}
-                <span class="status-message">
                     {{ placeholder "http.vars.template_message" }}
-                </span>
             {{ else }}
-                <span class="status-message">It's having a moment...</span>
+                It's having a moment...
             {{ end }}
+            </span>
         </div>
         <div class="error-box">
-            <pre class="error-text">SYSTEM_PROCESS_TERMINATED
-        Segmentation fault
-        (core dumped)
-        (╯°□°)╯︵ ┻━┻
-        ./shoo_bats.sh
-        please_hang_on.</pre>
+            <pre class="error-text">
+SYSTEM_PROCESS_TERMINATED
+Segmentation fault
+(core dumped)
+(╯°□°)╯︵ ┻━┻
+./shoo_bats.sh
+please_hang_on.</pre>
         </div>
         <div class="scene">
             <span class="bat">🦇</span>

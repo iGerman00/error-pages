@@ -171,18 +171,19 @@
     <div class="container">
         <h1>Hold up!</h1>
         <div class="message">
-            <span class="status-code">Error 401</span>
-            <br>
-            {{ if placeholder "http.vars.template_message" }}
-                <span class="status-message">
-                    {{ placeholder "http.vars.template_message" }}
-                </span>
-                <br>
+            {{ if placeholder "http.error.status_code" }}
+                <span class="status-code">Error {{ placeholder "http.error.status_code" }}</span>
             {{ else }}
-            <span class="status-message">
-                Sorry, but I'll need to see some ID first!
-            </span>
+                <span class="status-code">Error 401</span>
             {{ end }}
+            <br>
+            <span class="status-message">
+            {{ if placeholder "http.vars.template_message" }}
+                    {{ placeholder "http.vars.template_message" }}
+            {{ else }}
+                Sorry, but I'll need to see some ID first!
+            {{ end }}
+            </span>
         </div>
         <div class="id-card">
             <div class="credentials">
