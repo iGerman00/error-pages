@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>401 - Who are you?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff5d5b;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0px #2c1810;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffd1d0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .scene {
+            position: relative;
+            display: inline-block;
+            margin: 2rem 0;
+        }
+
+        .mousey {
+            font-size: 8rem;
+            display: inline-block;
+            transform-origin: center;
+            animation: tilt 3s infinite;
+        }
+
+        .magnifying-glass {
+            font-size: 3rem;
+            position: absolute;
+            right: -20px;
+            bottom: 20px;
+            transform-origin: bottom left;
+            animation: inspect 3s infinite;
+        }
+
+        @keyframes tilt {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes inspect {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(0deg); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b8b8b;
+            margin-top: 2rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .id-card {
+            background: rgba(255, 93, 91, 0.1);
+            border: 2px dashed #ff5d5b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .id-card::before {
+            content: '?';
+            position: absolute;
+            font-size: 4rem;
+            color: rgba(255, 93, 91, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-weight: bold;
+        }
+
+        .status-code {
+            background: rgba(255, 93, 91, 0.1);
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ff5d5b;
+        }
+
+        .status-message {
+            font-weight: 500;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        .spotlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 93, 91, 0.1) 0%,
+                rgba(26, 26, 26, 0) 70%);
+            
+            pointer-events: none;
+        }
+
+        .credentials {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .credentials span {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 93, 91, 0.1);
+            border-radius: 4px;
+            color: #ff5d5b;
+        }
+
+        @media (max-width: 768px) {
+            h1 { 
+                font-size: 2.5rem; 
+                text-shadow: 2px 2px 0px #2c1810;
+            }
+            .message { font-size: 1.2rem; }
+            .mousey { font-size: 6rem; }
+            .magnifying-glass { font-size: 2.5rem; }
+            .id-card { 
+                padding: 1rem;
+                max-width: 260px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="container">
+        <h1>Hold up!</h1>
+        <div class="message">
+            <span class="status-code">Error 401</span>
+            <br>
+            {{ if placeholder "http.vars.template_message" }}
+                <span class="status-message">
+                    {{ placeholder "http.vars.template_message" }}
+                </span>
+                <br>
+            {{ else }}
+            <span class="status-message">
+                Sorry, but I'll need to see some ID first!
+            </span>
+            {{ end }}
+        </div>
+        <div class="id-card">
+            <div class="credentials">
+                <span>🔑</span>
+                <span>🎟️</span>
+            </div>
+        </div>
+        <div class="scene">
+            <span class="mousey">🐁</span>
+            <span class="magnifying-glass">🔍</span>
+        </div>
+        <div class="subtitle">
+            *squints suspiciously at your lack of credentials*
+        </div>
+    </div>
+</body>
+</html>

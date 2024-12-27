@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 - Server error</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff5d5b;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0px #2c1810;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffd1d0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .scene {
+            position: relative;
+            display: inline-block;
+            margin-top: 2rem;
+            perspective: 1000px;
+            height: 8rem;
+        }
+
+        .bat {
+            font-size: 8rem;
+            display: inline-block;
+            transform-origin: bottom;
+            animation: hang 4s infinite;
+            position: relative;
+            top: -200%;
+        }
+
+        .error-box {
+            background: rgba(255, 93, 91, 0.1);
+            border: 2px dashed #ff5d5b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 320px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-box::before {
+            content: '>';
+            position: absolute;
+            left: 1rem;
+            color: #ff5d5b;
+            font-family: monospace;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        .error-text {
+            font-family: monospace;
+            color: #ff5d5b;
+            text-align: left;
+            padding-left: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        @keyframes hang {
+            0%, 100% { transform: rotate(188deg); }
+            50% { transform: rotate(170deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .status-code {
+            background: rgba(255, 93, 91, 0.1);
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ff5d5b;
+        }
+
+        .status-message {
+            font-weight: 500;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b8b8b;
+            margin-top: 2rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        @keyframes spark {
+            0% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% { 
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-40px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .spotlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 93, 91, 0.1) 0%,
+                rgba(26, 26, 26, 0) 70%);
+            
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { 
+                font-size: 2.5rem; 
+                text-shadow: 2px 2px 0px #2c1810;
+            }
+            .message { font-size: 1.2rem; }
+            .bat { font-size: 6rem; }
+            .scene { height: 6rem; }
+            .error-box { 
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="container">
+        <h1>Server's gone batty!</h1>
+        <div class="message">
+            {{ if placeholder "http.error.status_code" }}
+                <span class="status-code">Error {{ placeholder "http.error.status_code" }}</span>
+            {{ else }}
+                <span class="status-code">Error 500</span>
+            {{ end }}
+            <br>
+            {{ if placeholder "http.vars.template_message" }}
+                <span class="status-message">
+                    {{ placeholder "http.vars.template_message" }}
+                </span>
+            {{ else }}
+                <span class="status-message">It's having a moment...</span>
+            {{ end }}
+        </div>
+        <div class="error-box">
+            <pre class="error-text">SYSTEM_PROCESS_TERMINATED
+        Segmentation fault
+        (core dumped)
+        (╯°□°)╯︵ ┻━┻
+        ./shoo_bats.sh
+        please_hang_on.</pre>
+        </div>
+        <div class="scene">
+            <span class="bat">🦇</span>
+        </div>
+        <div class="subtitle">
+            *hangs upside down while things are being fixed*
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 - No entry!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ff5d5b;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 0px #2c1810;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            position: relative;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffd1d0;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .guard-dog {
+            font-size: 4rem;
+            margin: 2rem 0;
+            display: inline-block;
+            position: relative;
+        }
+
+        .zzz {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            font-size: 2rem;
+            transform-origin: bottom left;
+            animation: snooze 4s infinite;
+        }
+
+        @keyframes snooze {
+            0%, 100% { 
+                transform: scale(0.8) rotate(-10deg);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.1) rotate(10deg);
+                opacity: 1;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #8b8b8b;
+            margin-top: 2rem;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .fence {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 2rem 0;
+            opacity: 0.6;
+        }
+
+        .fence-post {
+            width: 12px;
+            height: 60px;
+            background: #ff5d5b;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .fence-post::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            background: #ff5d5b;
+            border-radius: 4px;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .status-code {
+            background: rgba(255, 93, 91, 0.1);
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ff5d5b;
+        }
+        
+        .status-message {
+            font-weight: 500;
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        .spotlight {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 93, 91, 0.1) 0%,
+                rgba(26, 26, 26, 0) 70%);
+            
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { 
+                font-size: 2.5rem; 
+                text-shadow: 2px 2px 0px #2c1810;
+            }
+            .message { font-size: 1.2rem; }
+            .guard-dog { font-size: 6rem; }
+            .fence { gap: 8px; }
+            .fence-post {
+                width: 8px;
+                height: 40px;
+            }
+            .fence-post::after {
+                width: 16px;
+                height: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="spotlight"></div>
+    <div class="container">
+        <h1>Forbidden!</h1>
+        <div class="message">
+            <span class="status-code">Error 403</span>
+            <br>
+            <span class="status-message">
+            {{ if placeholder "http.vars.template_message" }}
+                {{ placeholder "http.vars.template_message" }}
+            {{ else }}
+                Looks like you've stumbled into a restricted area.
+            {{ end }}
+            </span>
+        </div>
+        <div class="guard-dog">
+            ʋ-ᴥ-ʋ
+            <span class="zzz">💤</span>
+        </div>
+        <div class="subtitle">
+            *snores peacefully while guarding the forbidden content*
+        </div>
+    </div>
+</body>
+</html>
